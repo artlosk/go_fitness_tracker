@@ -31,7 +31,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 
 	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
-		return 0, 0, err
+		return 0, 0, fmt.Errorf("непраильный формат шагов: %w", err)
 	}
 
 	if steps <= 0 {
@@ -50,6 +50,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 	return steps, durationWalk, nil
 }
 
+// DayActionInfo
 // Функция вычисляет дистанцию в километрах и количество потраченных калорий и возвращать строку в таком виде
 func DayActionInfo(data string, weight, height float64) string {
 	steps, durationWalk, err := parsePackage(data)
